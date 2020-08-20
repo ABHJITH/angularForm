@@ -1,0 +1,57 @@
+<div>
+<form #userForm="ngForm" (ngSubmit)="onFormSubmit(userForm)">
+ 
+  <div class="form-group">
+ 
+    <label>Name</label>
+    <input type="text"   required #name="ngModel" [class.is-invalid]="name.invalid && (name.dirty || name.touched)"
+       [(ngModel)]="model.name" class="form-control " placeholder="Enter your name" name="name">
+       <small class="text-danger" [class.d-none]="name.valid||name.untouched">Name is required</small>
+    <br>
+    <label>Age</label>
+    <input type="text" required #age="ngModel"  [class.is-invalid]="age.invalid && (age.dirty || age.touched)" [(ngModel)]="model.age" name="age" placeholder="Enter your age" class="form-control">
+    <small class="text-danger" [class.d-none]="age.valid||age.untouched">Age is required</small>
+    <br>
+    <label>Address</label>
+    <input type="text" [(ngModel)]="model.address" name="address" placeholder="Enter your address" class="form-control">
+    <br>
+    <label>Contact Number</label>
+    <input type="text" required #phone="ngModel" 
+     [class.is-invalid]="phone.invalid && phone.touched"  [(ngModel)]="model.contact_number" required [pattern]="mobNumberPattern" name="contact_number"
+     placeholder="Enter your contact number" class="form-control">
+      <small class="text-danger" [class.d-none]="phone.valid||phone.untouched">Please enter a valid phone number !</small>
+    <br>
+    <div class="checkbox">
+      <label><input type="checkbox" [(ngModel)]="model.fever" name="fever" value="">Fever</label>
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox" [(ngModel)]="model.dry_cough"  name="dry_cough" value="">Dry cough</label>
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox" [(ngModel)]="model.runny_nose" name="runny_nose" value="">Running Nose</label>
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox" [(ngModel)]="model.fatique" name="fatique" value="">Fatigue</label>
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox" [(ngModel)]="model.shortness_of_breath" name="shortness_of_breath" value="">Shortness of breath</label>
+    </div>
+    <label>Recent travel history</label>
+    <input type="text" [(ngModel)]="model.recent_travel_history"  name="recent_travel_history" class="form-control">
+    <br>
+    <div class="form-group">
+      <label for="sel1">Any contact with corona confirmed cases:</label>
+      <select class="form-control" required #contact="ngModel" [class.is-invalid]="contact.invalid && contact.touched" #contact="ngModel" [(ngModel)]="model.cantact_with_corona_confirmed_cases" name="cantact_with_corona_confirmed_cases" id="sel1">
+        <option>No</option>
+        <option>Yes</option>
+
+ 
+      </select>
+      <small class="text-danger" [class.d-none]="contact.valid||contact.untouched">
+        Please select an answer
+      </small>
+    </div>
+    <button type="submit" class="btn btn-primary"[disabled]="!userForm.valid" >Submit</button>
+  </div>
+</form>
+</div>
